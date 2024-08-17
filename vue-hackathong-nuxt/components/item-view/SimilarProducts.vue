@@ -7,11 +7,14 @@
         class="col-span-1 h-80"
         v-for="product in productList"
         :key="product.id"
-        @click="navigateTo(`/itemview/${product.id}`)"
       >
-        <img class="h-60 w-60" :src="product.primaryImage" />
-        <h2 class="text-xl font-bold truncate">{{ product.name }}</h2>
-        <p class="text-l font-semibold">{{ formattedPrice(product.price) }}</p>
+        <div @click="navigateTo(`/itemview/${product.id}`)">
+          <img class="h-60 w-60" :src="product.primaryImage" />
+          <h2 class="text-xl font-bold truncate">{{ product.name }}</h2>
+          <p class="text-l font-semibold">
+            {{ formattedPrice(product.price) }}
+          </p>
+        </div>
         <button
           class="group cursor-pointer outline-none hover:rotate-90 duration-300 float-right"
           title="Add to cart"
@@ -56,32 +59,30 @@ export default defineComponent({
 
     onMounted(async () => {
       try {
-          loading.value = true;
+        loading.value = true;
         productList.value = await $ProductService.getAllProducts({
           page: 0,
           pageSize: 4,
           search: "",
           tags: props.tags,
         });
-        console.log("LIST", productList);
-        
       } catch (error) {
         console.error("Failed to fetch similar products:", error);
       } finally {
-          loading.value = false;
+        loading.value = false;
       }
     });
 
     const handleAddToCart = (product: Product): void => {
       // Implement the add-to-cart functionality here
-      const cartProduct : ProductListObject = {
+      const cartProduct: ProductListObject = {
         id: product.id,
         name: product.name,
         price: product.price,
         imageUrl: product.primaryImage,
         description: product.description,
-        tags: []
-      }
+        tags: [],
+      };
       addToCart(cartProduct);
     };
 
@@ -99,7 +100,7 @@ export default defineComponent({
       addToCart,
       formattedPrice,
       navigateTo,
-      handleAddToCart
+      handleAddToCart,
     };
   },
 });
