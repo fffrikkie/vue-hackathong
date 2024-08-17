@@ -1,7 +1,5 @@
 <template>
-    <NuxtLoadingIndicator :is="$loading" />
     <div>
-        <div class="text-5xl p-8">Product List</div>
         <div class="p-8">
             <div id="poda">
                 <div class="glow"></div>
@@ -56,13 +54,14 @@
           class="w-full p-2 border rounded"
         /> -->
         </div>
+        
         <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
             <div v-for="product in productList" :key="product.id">
                 <ProductListItem :id="product.id" :name="product.name" :price="product.price"
                     :imageUrl="product.primaryImage" />
             </div>
         </div>
-        <div v-if="loading" class="text-center p-4">Loading more products...</div>
+        <div v-if="loading" class="loader w-1/2 mx-auto"></div>
         <div ref="infiniteScrollTrigger"></div>
     </div>
 </template>
@@ -71,7 +70,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import ProductListItem from '@/components/product-list-item.vue';
 
-const { $ProductService, $loading } = useNuxtApp();
+const { $ProductService } = useNuxtApp();
 
 const productList = ref([]);
 const page = ref(0);
@@ -474,4 +473,21 @@ li {
     left: 20px;
     top: 15px;
 }
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #41b883;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Heading */
+
 </style>
