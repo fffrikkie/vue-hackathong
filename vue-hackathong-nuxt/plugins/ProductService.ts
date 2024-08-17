@@ -1,6 +1,6 @@
 export default defineNuxtPlugin((nuxtApp) => {
   const ProductService = $fetch.create({
-    baseURL: 'https://api.nuxt.com',
+    baseURL: 'http://localhost:5283/products',
     onRequest({ request, options, error }) {
     },
     async onResponseError({ response }) {

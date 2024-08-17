@@ -2,18 +2,27 @@
     <div >
         <div class="text-5xl p-8">Product List</div class="">
         <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
-            <div v-for="product in products" :key="product.id">
-                <ProductListItem :id="product.id"  :name="product.name" :price="product.price" :imageUrl="product.imageUrl" />
+            <div v-for="product in productList" :key="product.id">
+                <ProductListItem :id="product.id"  :name="product.name" :price="product.price" :imageUrl="product.primaryImage" />
             </div>
         </div>
     </div>
-    <h1>{{ t }}</h1>
 </template>
 
 <script setup>
 import ProductListItem from '@/components/product-list-item.vue';
 const { $ProductService } = useNuxtApp()
-const productList = await useAsyncData('modules', () => $ProductService('/modules'))
+const productList = await useAsyncData(() => $ProductService('/list', 
+{
+    method: 'POST', 
+    body: {
+        page: 0,
+        pageSize: 25,
+        tags: [],
+        search: ''
+}})).data._rawValue;
+
+console.log(productList);
 
 const products = [
     { id: 1, name: 'Product 1', price: 49, imageUrl: 'https://media.takealot.com/covers_images/7ee4f95677f14d23bd52b29a2d3bc387/s-pdpxl.file' },
