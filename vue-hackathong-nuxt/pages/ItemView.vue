@@ -1,9 +1,11 @@
 <template>
-  <ProductInfo
-    :key="product.id"
-    :product="product"
-    @add-to-cart="handleAddToCart"
-  />
+  <div class="flex justify-center">
+    <ProductInfo
+      :key="product.id"
+      :product="product"
+      @add-to-cart="handleAddToCart"
+    />
+  </div>
 </template>
 
 <script lang="ts">
