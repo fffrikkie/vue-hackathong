@@ -1,51 +1,32 @@
 <template>
     <div>
-        <!-- <div class="text-5xl p-8">Product List</div> -->
         <div class="sticky-search-container sticky top-0 z-10 transition-opacity duration-300">
             <div class="p-8">
-                <div id="poda" class="">
-                    <div class="glow"></div>
-                    <div class="darkBorderBg"></div>
-                    <div class="darkBorderBg"></div>
-                    <div class="darkBorderBg"></div>
-
-                    <div class="white"></div>
-
-                    <div class="border"></div>
-
-                    <div id="main">
-                        <input type="text" name="text" class="input" v-model="searchQuery" @input="debounceSearch"
-                            placeholder="Search products..." />
-                        <div class="filterBorder"></div>
-                        <div id="filter-icon">
-                            <svg preserveAspectRatio="none" height="27" width="27" viewBox="4.8 4.56 14.832 15.408"
-                                fill="none">
-                                <path
-                                    d="M8.16 6.65002H15.83C16.47 6.65002 16.99 7.17002 16.99 7.81002V9.09002C16.99 9.56002 16.7 10.14 16.41 10.43L13.91 12.64C13.56 12.93 13.33 13.51 13.33 13.98V16.48C13.33 16.83 13.1 17.29 12.81 17.47L12 17.98C11.24 18.45 10.2 17.92 10.2 16.99V13.91C10.2 13.5 9.97 12.98 9.73 12.69L7.52 10.36C7.23 10.08 7 9.55002 7 9.20002V7.87002C7 7.17002 7.52 6.65002 8.16 6.65002Z"
-                                    stroke="#d6d6e6" stroke-width="1" stroke-miterlimit="10" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
+                <div class="ml-4 flex flex-wrap">
+                    <div v-for="tag in matchedTags" :key="tag.id"
+                        class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 flex items-center">
+                        {{ tag.name }}
+                        <button @click="removeTag(tag)"
+                            class="ml-2 text-gray-500 hover:text-gray-700 focus:outline-none">
+                            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
                             </svg>
-                        </div>
-                        <div id="search-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2"
-                                stroke-linejoin="round" stroke-linecap="round" height="24" fill="none"
-                                class="feather feather-search">
-                                <circle stroke="url(#search)" r="8" cy="11" cx="11"></circle>
-                                <line stroke="url(#search)" y2="16.65" y1="22" x2="16.65" x1="22"></line>
-                                <defs>
-                                    <linearGradient gradientTransform="rotate(50)" id="search">
-                                        <stop stop-color="#f8e7f8" offset="0%"></stop>
-                                        <stop stop-color="#b6a9b7" offset="50%"></stop>
-                                    </linearGradient>
-                                    <linearGradient id="search">
-                                        <stop stop-color="#b6a9b7" offset="0%"></stop>
-                                        <stop stop-color="#837484" offset="50%"></stop>
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
+                        </button>
                     </div>
                 </div>
+                <input v-model="searchQuery" @input="debounceSearch"
+                    class="bg-[#222630] px-4 py-3 outline-none w-[280px] text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040]"
+                    name="text" placeholder="Search products" type="text" />
+                <button v-if="searchQuery || matchedTags.length" @click="clearSearch"
+                    class="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
             </div>
 
         </div>
@@ -64,9 +45,11 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import ProductListItem from '@/components/product-list-item.vue';
 
-const { $ProductService } = useNuxtApp();
+const { $ProductService, $loading, $TagService } = useNuxtApp();
 
 const productList = ref([]);
+const tags = ref([]);
+const matchedTags = ref([]);
 const page = ref(0);
 const pageSize = 25;
 const searchQuery = ref('');
@@ -81,12 +64,16 @@ const fetchProducts = async () => {
     const newProducts = await $ProductService.getAllProducts({
         page: page.value,
         pageSize,
-        tags: [],
+        tags: matchedTags.value.map(tag => tag.name),
         search: searchQuery.value
     });
     productList.value = [...productList.value, ...newProducts];
     page.value++;
     loading.value = false;
+};
+
+const fetchTags = async () => {
+    tags.value = await $TagService.getAllTags();
 };
 
 const debounce = (fn, delay) => {
@@ -100,13 +87,29 @@ const debounce = (fn, delay) => {
 const debounceSearch = debounce(() => {
     productList.value = [];
     page.value = 0;
+    matchedTags.value = tags.value.filter(tag =>
+        tag.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    );
     fetchProducts();
 }, 300);
 
+const removeTag = (tag) => {
+    matchedTags.value = matchedTags.value.filter(t => t !== tag);
+};
+
 const infiniteScrollTrigger = ref(null);
+
+const clearSearch = () => {
+    searchQuery.value = '';
+    matchedTags.value = [];
+    productList.value = [];
+    page.value = 0;
+    fetchProducts();
+};
 
 onMounted(() => {
     fetchProducts();
+    fetchTags();
 
     observer.value = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting && !loading.value) {
