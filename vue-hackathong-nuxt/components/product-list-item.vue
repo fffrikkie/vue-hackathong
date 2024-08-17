@@ -1,6 +1,6 @@
 <template>
     <div class="relative h-96 overflow-hidden rounded-xl bg-[#3d3c3d] hover:scale-105 transition-transform duration-300 ease-in-out shadow-xl"
-        @click="navigateTo('/itemview')">
+        @click="navigateTo(`/itemview/${product.id}`)">
         <div
             class="absolute inset-0.5 flex flex-col items-start justify-start text-white z-[1] rounded-xl bg-[#323132] bg-opacity-90">
             <div class="w-full h-48 flex items-center justify-center overflow-hidden rounded-t-xl bg-white">
