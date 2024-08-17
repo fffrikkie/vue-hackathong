@@ -142,12 +142,4 @@ export default defineComponent({
 .add-to-cart-button:hover {
   background-color: #218838;
 }
-.loader {
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #41b883;
-  width: 60px;
-  height: 60px;
-  animation: spin 2s linear infinite;
-}
 </style>
