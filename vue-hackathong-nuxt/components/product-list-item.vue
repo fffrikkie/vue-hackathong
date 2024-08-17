@@ -1,5 +1,5 @@
 <template>
-    <div class="product-item" @click=" navigateTo('/about')">
+    <div class="product-item" @click=" navigateTo('/itemview')">
         <img :src="product.imageUrl" :alt="product.name" class="product-image">
         <div class="product-details">
             <h3 class="text-red-500 text-base">{{ product.name }}</h3>
