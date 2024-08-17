@@ -35,6 +35,9 @@ export default {
         }
       }
     },
+    container: {
+      center: true,
+    },
     variants: {
       extend: {
         borderColor: ['focus-visible'],

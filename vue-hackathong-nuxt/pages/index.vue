@@ -4,7 +4,7 @@ import { TheWelcome } from '#components'
 </script>
 
 <template>
-  <main>
+  <main >
     <ProductList />
   </main>
 </template>
