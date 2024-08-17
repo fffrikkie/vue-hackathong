@@ -34,8 +34,7 @@
 
         <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
             <div v-for="product in productList" :key="product.id">
-                <ProductListItem :id="product.id" :name="product.name" :price="product.price"
-                    :imageUrl="product.primaryImage" />
+                <ProductListItem :id="product.id"  :name="product.name" :price="product.price" :imageUrl="product.primaryImage" :description="product.description"/>
             </div>
         </div>
         <div v-if="loading" class="loader w-1/2 mx-auto"></div>

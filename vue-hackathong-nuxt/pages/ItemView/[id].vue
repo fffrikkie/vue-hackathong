@@ -15,6 +15,7 @@ import { defineComponent, ref, onMounted } from "vue";
 import { useRoute, useNuxtApp } from "#app";
 import ProductInfo from "@/components/item-view/ItemDetails.vue";
 import type { Product } from "~/components/interface/product.inteface";
+import type { ProductListObject } from "~/components/interface/productListObject.inteface";
 
 export default defineComponent({
   components: {
@@ -43,8 +44,16 @@ export default defineComponent({
     });
 
     const handleAddToCart = (product: Product) => {
-      console.log("Adding to cart:", product);
       // Implement the add-to-cart functionality here
+      const cartProduct : ProductListObject = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        imageUrl: product.primaryImage,
+        description: product.description,
+        tags: []
+      }
+      addToCart(cartProduct);
     };
 
     return {
