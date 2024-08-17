@@ -4,7 +4,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <header class="flex w-screen bg-gray-800 p-2">
+  <header class="flex w-screen bg-gray-800 p-2 z-50">
     <div class="logo-wrapper">
       <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="75" height="75" />
       <p>Nuxt to nothing prices</p>
