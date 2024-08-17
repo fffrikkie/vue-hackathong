@@ -1,14 +1,16 @@
 <template>
     <div class="relative h-96 overflow-hidden rounded-xl bg-[#3d3c3d] hover:scale-105 transition-transform duration-300 ease-in-out shadow-xl"
-        @click="navigateTo(`/itemview/${product.id}`)">
+        >
         <div
             class="absolute inset-0.5 flex flex-col items-start justify-start text-white z-[1] rounded-xl bg-[#323132] bg-opacity-90">
-            <div class="w-full h-48 flex items-center justify-center overflow-hidden rounded-t-xl bg-white">
-                <img :src="product.imageUrl" :alt="product.name" class="w-full h-full object-contain">
-            </div>
-            <div class="p-4 w-full">
-                <h3 class="text-lg font-semibold mb-2 text-left">{{ product.name }}</h3>
-                <p class="mb-4 text-left">R {{ product.price }}</p>
+            <div class="w-full" @click="navigateTo(`/itemview/${product.id}`)">
+                <div class="w-full h-48 flex items-center justify-center overflow-hidden rounded-t-xl bg-white">
+                    <img :src="product.imageUrl" :alt="product.name" class="w-full h-full object-contain">
+                </div>
+                <div class="p-4 w-full">
+                    <h3 class="text-lg font-semibold mb-2 text-left">{{ product.name }}</h3>
+                    <p class="mb-4 text-left">R {{ product.price }}</p>
+                </div>
             </div>
             <button class="group cursor-pointer outline-none hover:rotate-90 duration-300 absolute bottom-4 right-4"
                 title="Add to cart" @click="addToCart(cartProduct)">
