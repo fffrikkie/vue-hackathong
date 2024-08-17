@@ -38,7 +38,7 @@
                                         <stop stop-color="#f8e7f8" offset="0%"></stop>
                                         <stop stop-color="#b6a9b7" offset="50%"></stop>
                                     </linearGradient>
-                                    <linearGradient id="searchç">
+                                    <linearGradient id="search">
                                         <stop stop-color="#b6a9b7" offset="0%"></stop>
                                         <stop stop-color="#837484" offset="50%"></stop>
                                     </linearGradient>
