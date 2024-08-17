@@ -16,9 +16,6 @@
                         </button>
                     </div>
                 </div>
-                <input v-model="searchQuery" @input="debounceSearch"
-                    class="bg-[#222630] px-4 py-3 outline-none w-[280px] text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040]"
-                    name="text" placeholder="Search products" type="text" />
                 <button v-if="searchQuery || matchedTags.length" @click="clearSearch"
                     class="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none">
                     <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
@@ -27,10 +24,14 @@
                             clip-rule="evenodd" />
                     </svg>
                 </button>
+                <input v-model="searchQuery" @input="debounceSearch"
+                    class="bg-[#222630] px-4 py-3 outline-none w-5/6 text-white rounded-lg border-2 transition-colors duration-100 border-solid focus:border-[#596A95] border-[#2B3040]"
+                    name="text" placeholder="Search products" type="text" />
+
             </div>
 
         </div>
-        
+
         <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
             <div v-for="product in productList" :key="product.id">
                 <ProductListItem :id="product.id" :name="product.name" :price="product.price"
@@ -89,7 +90,7 @@ const debounceSearch = debounce(() => {
     productList.value = [];
     page.value = 0;
     matchedTags.value = tags.value.filter(tag =>
-        tag.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+        tag.name.toLowerCase() == searchQuery.value.toLowerCase()
     );
     fetchProducts();
 }, 300);
@@ -492,5 +493,4 @@ li {
 }
 
 /* Heading */
-
 </style>
