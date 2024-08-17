@@ -1,8 +1,8 @@
 <template>
-    <div class="product-item">
+    <div class="product-item" @click=" navigateTo('/about')">
         <img :src="product.imageUrl" :alt="product.name" class="product-image">
         <div class="product-details">
-            <h3  class="text-red-500 text-base">{{ product.name }}</h3>
+            <h3 class="text-red-500 text-base">{{ product.name }}</h3>
             <p class="product-price">{{ product.price }}</p>
             <button class="add-to-cart-button">Add to Cart</button>
         </div>
@@ -10,14 +10,14 @@
 </template>
 
 <script setup lang="ts">
-const product = defineProps < Product > ()
+const product = defineProps<Product>()
 
 
 interface Product {
     id: number;
     name: string;
     price: number;
-    imageUrl ?: string;
+    imageUrl?: string;
 }
 </script>
 
