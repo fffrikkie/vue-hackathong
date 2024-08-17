@@ -4,18 +4,17 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
       <nav>
-        <NuxtLink to="/">Home</NuxtLink>
+        <NuxtLink to="/">Product List</NuxtLink>
         <NuxtLink to="/about">About</NuxtLink>
         <NuxtLink to="/itemview">Item View</NuxtLink>
       </nav>
     </div>
-  </header>
-
+  </header> -->
   <NuxtPage />
 </template>
 
