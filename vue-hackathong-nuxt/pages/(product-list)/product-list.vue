@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="float-center">
         <h1>Product List</h1>
         <ul>
             <li v-for="product in products" :key="product.id">
-                <ProductListItem :name="product.name" :price="product.price" />
+                <ProductListItem :id="product.id"  :name="product.name" :price="product.price" />
             </li>
         </ul>
     </div>
