@@ -3,7 +3,7 @@ import type { ProductListRequest } from '~/components/interface/productListReque
 
 export default defineNuxtPlugin((nuxtApp) => {
   const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5283/products',
+    baseURL: 'https://abfrontendhackerthon.onrender.com/products',
   });
 
   const loading = ref(false);
