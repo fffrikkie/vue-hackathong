@@ -25,16 +25,11 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import type { Product } from './interface/product.inteface';
+
 const product = defineProps<Product>()
 
-
-interface Product {
-    id: number;
-    name: string;
-    price: number;
-    imageUrl?: string;
-}
 </script>
 
 <style scoped>

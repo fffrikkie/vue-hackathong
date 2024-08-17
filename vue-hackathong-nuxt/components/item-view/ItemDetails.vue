@@ -7,10 +7,18 @@
       <h2 class="text-4xl font-bold">{{ product.name }}</h2>
       <p class="text-xl p-2">{{ product.description }}</p>
       <div class="flex py-2">
-        <div class="rounded-full p-2 m-1 bg-gray-500" v-for="tag in product.tags">{{ tag }}</div>
+        <div
+          class="rounded-full p-2 m-1 bg-gray-500"
+          v-for="tag in product.tags"
+        >
+          {{ tag }}
+        </div>
       </div>
       <p class="p-2 text-xl font-semibold">{{ formattedPrice }}</p>
       <button @click="addToCart" class="add-to-cart-button">Add to Cart</button>
+    </div>
+    <div class="col-span-2">
+        <SimilarProducts :tags="product.tags" />
     </div>
   </div>
 </template>
