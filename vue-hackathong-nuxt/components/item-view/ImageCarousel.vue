@@ -1,5 +1,7 @@
 <template>
-  <img :src="images[selectedImage]" class="product-image" />
+  <div class="rounded w-full h-1/2">
+    <img :src="images[selectedImage]" class="rounded w-full h-full" />
+  </div>
 
   <div class="image-carousel flex justify-center">
     <img
