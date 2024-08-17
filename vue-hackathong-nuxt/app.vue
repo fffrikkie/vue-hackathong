@@ -15,7 +15,7 @@ import HelloWorld from './components/HelloWorld.vue'
       <!-- <HelloWorld msg="You did it!" /> -->
 
       <nav>
-        <NuxtLink to="/">Home</NuxtLink>
+        <NuxtLink to="/">Product List</NuxtLink>
         <NuxtLink to="/about">About</NuxtLink>
       </nav>
     </div>
