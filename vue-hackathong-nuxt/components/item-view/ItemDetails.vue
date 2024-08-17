@@ -1,5 +1,5 @@
 <template>
-  <div class="product-info">
+  <div class="flex">
     <img
       :src="product.images[selectedImage]"
       :alt="product.name"
