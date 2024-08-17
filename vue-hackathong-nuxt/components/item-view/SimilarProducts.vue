@@ -1,7 +1,7 @@
 <template>
   <div class="text-5xl p-8">Similar Products</div>
   <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
-    <div class="w-80 h-80" v-for="product in products" :key="product.id">
+    <div class="w-80 h-80" v-for="product in products" :key="product.id" @click="navigateTo(`/itemview/${product.id}`)">
       <img class="h-60 w-60" :src="product.images[0]" />
       <h2 class="text-xl font-bold truncate">
         {{ product.name }}

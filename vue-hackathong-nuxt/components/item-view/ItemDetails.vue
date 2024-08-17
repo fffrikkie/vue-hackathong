@@ -1,9 +1,9 @@
 <template>
   <div class="product-info rounded shadow-2xl w-4/5 p-8 grid grid-cols-2 gap-5">
-    <div class="shadow-2xl">
+    <div class="shadow-2xl col-span-1">
       <ImageCarousel :images="product.images" />
     </div>
-    <div>
+    <div class="col-span-1">
       <h2 class="text-4xl font-bold">{{ product.name }}</h2>
       <p class="text-xl p-2">{{ product.description }}</p>
       <div class="flex py-2">
@@ -17,6 +17,7 @@
       <p class="p-2 text-xl font-semibold">{{ formattedPrice }}</p>
       <button @click="addToCart" class="add-to-cart-button">Add to Cart</button>
     </div>
+    <div class="divider col-span-2"></div>
     <div class="col-span-2">
         <SimilarProducts :tags="product.tags" />
     </div>
@@ -62,6 +63,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+.divider {
+  border: 1px solid #28a745;
+  height: 1px;
+}
+
 .product-info {
   border: 1px solid hsla(160, 100%, 37%, 1);
 }
