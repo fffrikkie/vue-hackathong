@@ -15,7 +15,7 @@
         <button
           class="group cursor-pointer outline-none hover:rotate-90 duration-300 float-right"
           title="Add to cart"
-          @click.stop="addToCart(product)"
+          @click="handleAddToCart(product)"
         >
           <svg
             class="w-8 h-8 stroke-teal-500 fill-none group-hover:fill-white-200 group-active:stroke-teal-200 group-active:fill-teal-600 group-active:duration-0 duration-300"
@@ -39,6 +39,7 @@
 import { defineComponent, ref, onMounted } from "vue";
 import { useNuxtApp } from "#app";
 import type { Product } from "../interface/product.inteface";
+import type { ProductListObject } from "../interface/productListObject.inteface";
 
 export default defineComponent({
   name: "SimilarProducts",
@@ -71,9 +72,17 @@ export default defineComponent({
       }
     });
 
-    const addToCart = (product: Product): void => {
-      console.log("Adding to cart:", product);
+    const handleAddToCart = (product: Product): void => {
       // Implement the add-to-cart functionality here
+      const cartProduct : ProductListObject = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        imageUrl: product.primaryImage,
+        description: product.description,
+        tags: []
+      }
+      addToCart(cartProduct);
     };
 
     const formattedPrice = (price: number): string => {
@@ -90,6 +99,7 @@ export default defineComponent({
       addToCart,
       formattedPrice,
       navigateTo,
+      handleAddToCart
     };
   },
 });

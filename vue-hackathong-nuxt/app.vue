@@ -11,7 +11,7 @@
           <NuxtLink to="/">Home</NuxtLink>
           <NuxtLink to="/about">About</NuxtLink>
         </div>
-        <h1> Temp CART</h1>
+        <cart />
       </nav>
     </div>
   </header>
