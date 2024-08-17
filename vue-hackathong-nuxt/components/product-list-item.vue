@@ -11,7 +11,7 @@
                 <p class="mb-4 text-left">R {{ product.price }}</p>
             </div>
             <button class="group cursor-pointer outline-none hover:rotate-90 duration-300 absolute bottom-4 right-4"
-                title="Add to cart">
+                title="Add to cart" @click="addToCart(cartProduct)">
                 <svg class="w-8 h-8 stroke-teal-500 fill-none group-hover:fill-white-200 group-active:stroke-teal-200 group-active:fill-teal-600 group-active:duration-0 duration-300"
                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-width="1.5"
@@ -26,14 +26,25 @@
 </template>
 
 <script setup lang="ts">
+import type { ProductListObject } from './interface/productListObject.inteface';
 
 const product = defineProps<Product>()
+
+const cartProduct : ProductListObject = {
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    imageUrl: product.imageUrl,
+    description: product.description,
+    tags: []
+}
 
 interface Product {
     id: number;
     name: string;
     price: number;
     imageUrl?: string;
+    description?: string;
 }
 </script>
 

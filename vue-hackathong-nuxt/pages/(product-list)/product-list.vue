@@ -52,8 +52,7 @@
         </div>
         <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
             <div v-for="product in productList" :key="product.id">
-                <ProductListItem :id="product.id" :name="product.name" :price="product.price"
-                    :imageUrl="product.primaryImage" />
+                <ProductListItem :id="product.id"  :name="product.name" :price="product.price" :imageUrl="product.primaryImage" :description="product.description"/>
             </div>
         </div>
         <div v-if="loading" class="text-center p-4">Loading more products...</div>
@@ -65,7 +64,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import ProductListItem from '@/components/product-list-item.vue';
 
-const { $ProductService, $loading } = useNuxtApp();
+const { $ProductService } = useNuxtApp();
 
 const productList = ref([]);
 const page = ref(0);
