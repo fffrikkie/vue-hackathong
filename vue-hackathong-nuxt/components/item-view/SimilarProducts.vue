@@ -4,7 +4,7 @@
     <div v-if="loading" class="loader w-1/2 mx-auto"></div>
     <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
       <div
-        class="w-80 h-80"
+        class="col-span-1 h-80"
         v-for="product in productList"
         :key="product.id"
         @click="navigateTo(`/itemview/${product.id}`)"
