@@ -8,20 +8,15 @@ import HelloWorld from './components/HelloWorld.vue'
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <!-- <NuxtPage />
-      <NuxtPage />
-      <NuxtPage /> -->
-      
-      <!-- <HelloWorld msg="You did it!" /> -->
-
       <nav>
         <NuxtLink to="/">Home</NuxtLink>
         <NuxtLink to="/about">About</NuxtLink>
+        <NuxtLink to="/itemview">Item View</NuxtLink>
       </nav>
     </div>
   </header>
 
-  <RouterView />
+  <NuxtPage />
 </template>
 
 <style scoped>
