@@ -1,5 +1,14 @@
 <script setup lang="ts">
+const { $CheckoutService} = useNuxtApp();
 
+const CheckOut = async () => {
+  const checkout = await $CheckoutService.purchaseProducts( {
+    productIds: getCart().map(item => item.id)
+  });
+  clearCart();
+
+  alert('SUCKcess!!!!');
+};
 </script>
 
 <template>
@@ -27,7 +36,7 @@
       </li>
       <li v-if="getCart().length === 0">Cart is empty</li>
       <li v-if="getCart().length > 0">
-        <button class="checkout-button" @click="clearCart()"><span>Checkout</span></button>
+        <button class="checkout-button" @click="CheckOut()"><span>Checkout</span></button>
       </li>
     </ul>
   </div>
