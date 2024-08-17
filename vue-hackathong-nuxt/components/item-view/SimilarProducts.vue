@@ -3,7 +3,7 @@
   <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
     <div class="w-80 h-80" v-for="product in products" :key="product.id">
       <img class="h-60 w-60" :src="product.images[0]" />
-      <h2 class="tooltip text-xl font-bold truncate overflow-ellipsis">
+      <h2 class="text-xl font-bold truncate">
         {{ product.name }}
       </h2>
       <p class="text-l font-semibold">{{ formattedPrice(product.price) }}</p>
