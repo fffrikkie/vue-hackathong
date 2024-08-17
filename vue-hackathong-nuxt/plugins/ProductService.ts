@@ -17,7 +17,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     },
     async getProductById(id: number) {
       try {
-        const response = await axiosInstance.get(`/${id}`);
+        const response = await axiosInstance.get(`/single?id=${id}`);
         return response.data;
       } catch (error) {
         console.log({error});

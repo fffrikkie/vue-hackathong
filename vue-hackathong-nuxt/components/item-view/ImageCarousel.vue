@@ -1,5 +1,7 @@
 <template>
-  <img :src="images[selectedImage]" class="product-image" />
+  <div class="rounded w-full h-80 flex justify-center">
+    <img :src="images[selectedImage]" class="rounded" />
+  </div>
 
   <div class="image-carousel flex justify-center">
     <img
@@ -10,11 +12,10 @@
       :class="{ selected: selectedImage === index }"
     />
   </div>
-  <div></div>
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType } from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ImageCarousel",
@@ -62,8 +63,6 @@ export default defineComponent({
 
 .image-carousel {
   overflow: auto;
-  width: 800px;
-  height: 200px;
 }
 
 .product-name {
