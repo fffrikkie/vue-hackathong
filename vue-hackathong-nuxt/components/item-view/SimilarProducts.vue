@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="text-5xl p-8">Similar Products</div>
+    <div v-if="loading" class="loader w-1/2 mx-auto"></div>
     <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
       <div
         class="w-80 h-80"
@@ -49,11 +50,12 @@ export default defineComponent({
   },
   setup(props) {
     const { $ProductService, $loading } = useNuxtApp();
+    const loading = ref(false);
     const productList = ref<Product[]>([]);
 
     onMounted(async () => {
       try {
-        // $loading.start(); // Start loading indicator
+          loading.value = true;
         productList.value = await $ProductService.getAllProducts({
           page: 0,
           pageSize: 4,
@@ -65,7 +67,7 @@ export default defineComponent({
       } catch (error) {
         console.error("Failed to fetch similar products:", error);
       } finally {
-        // $loading.finish(); // Stop loading indicator
+          loading.value = false;
       }
     });
 
@@ -84,6 +86,7 @@ export default defineComponent({
 
     return {
       productList,
+      loading,
       addToCart,
       formattedPrice,
       navigateTo,
@@ -138,5 +141,13 @@ export default defineComponent({
 }
 .add-to-cart-button:hover {
   background-color: #218838;
+}
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #41b883;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
 }
 </style>
