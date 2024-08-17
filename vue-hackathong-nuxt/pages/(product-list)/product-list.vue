@@ -1,5 +1,4 @@
 <template>
-    <NuxtLoadingIndicator :is="$loading" />
     <div>
         <div class="sticky-search-container sticky top-0 z-10 transition-opacity duration-300">
             <div class="p-8">
@@ -31,13 +30,14 @@
             </div>
 
         </div>
+        
         <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
             <div v-for="product in productList" :key="product.id">
                 <ProductListItem :id="product.id" :name="product.name" :price="product.price"
                     :imageUrl="product.primaryImage" />
             </div>
         </div>
-        <div v-if="loading" class="text-center p-4">Loading more products...</div>
+        <div v-if="loading" class="loader w-1/2 mx-auto"></div>
         <div ref="infiniteScrollTrigger"></div>
     </div>
 </template>
@@ -490,4 +490,7 @@ li {
     transform: translateY(-50%);
     z-index: 2;
 }
+
+/* Heading */
+
 </style>
