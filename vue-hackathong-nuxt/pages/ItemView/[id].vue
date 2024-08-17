@@ -1,0 +1,54 @@
+<template>
+  <div class="flex justify-center">
+    <ProductInfo
+      v-if="product"
+      :key="product.id"
+      :product="product"
+      @add-to-cart="handleAddToCart"
+    />
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent, ref, onMounted } from "vue";
+import { useRoute, useNuxtApp } from "#app";
+import ProductInfo from "@/components/item-view/ItemDetails.vue";
+import type { Product } from "~/components/interface/product.inteface";
+
+export default defineComponent({
+  components: {
+    ProductInfo,
+  },
+  setup() {
+    const { $ProductService, $loading } = useNuxtApp();
+    const route = useRoute();
+    const productId = ref<number | null>(null);
+    const product = ref<Product | null>(null);
+
+    onMounted(async () => {
+      productId.value = parseInt(route.params.id as string, 10);
+
+      if (productId.value !== null) {
+        try {
+          // $loading.start(); // Start loading indicator
+          product.value = await $ProductService.getProductById(productId.value);
+        } catch (error) {
+          console.error("Failed to fetch product:", error);
+        } finally {
+          // $loading.finish(); // Stop loading indicator
+        }
+      }
+    });
+
+    const handleAddToCart = (product: Product) => {
+      console.log("Adding to cart:", product);
+      // Implement the add-to-cart functionality here
+    };
+
+    return {
+      product,
+      handleAddToCart,
+    };
+  },
+});
+</script>
