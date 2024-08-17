@@ -1,6 +1,6 @@
 <template>
     <div class="product-item">
-        <!-- <img :src="product.imageUrl" :alt="product.name" class="product-image"> -->
+        <img :src="product.imageUrl" :alt="product.name" class="product-image">
         <div class="product-details">
             <h3  class="text-red-500 text-base">{{ product.name }}</h3>
             <p class="product-price">{{ product.price }}</p>
@@ -17,6 +17,7 @@ interface Product {
     id: number;
     name: string;
     price: number;
+    imageUrl ?: string;
 }
 </script>
 
