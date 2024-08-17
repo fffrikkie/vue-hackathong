@@ -11,10 +11,11 @@ import HelloWorld from './components/HelloWorld.vue'
       <nav>
         <NuxtLink to="/">Product List</NuxtLink>
         <NuxtLink to="/about">About</NuxtLink>
+        <NuxtLink to="/itemview">Item View</NuxtLink>
       </nav>
     </div>
   </header> -->
-  <RouterView />
+  <NuxtPage />
 </template>
 
 <style scoped>
