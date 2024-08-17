@@ -1,60 +1,54 @@
 <template>
     <NuxtLoadingIndicator :is="$loading" />
     <div>
-        <div class="text-5xl p-8">Product List</div>
-        <div class="p-8">
-            <div id="poda">
-                <div class="glow"></div>
-                <div class="darkBorderBg"></div>
-                <div class="darkBorderBg"></div>
-                <div class="darkBorderBg"></div>
+        <!-- <div class="text-5xl p-8">Product List</div> -->
+        <div class="sticky-search-container sticky top-0 z-10 transition-opacity duration-300">
+            <div class="p-8">
+                <div id="poda" class="">
+                    <div class="glow"></div>
+                    <div class="darkBorderBg"></div>
+                    <div class="darkBorderBg"></div>
+                    <div class="darkBorderBg"></div>
 
-                <div class="white"></div>
+                    <div class="white"></div>
 
-                <div class="border"></div>
+                    <div class="border"></div>
 
-                <div id="main">
-                    <input type="text" name="text" class="input" v-model="searchQuery" @input="debounceSearch"
-                        placeholder="Search products..." />
-                    <div id="input-mask"></div>
-                    <div id="pink-mask"></div>
-                    <div class="filterBorder"></div>
-                    <div id="filter-icon">
-                        <svg preserveAspectRatio="none" height="27" width="27" viewBox="4.8 4.56 14.832 15.408"
-                            fill="none">
-                            <path
-                                d="M8.16 6.65002H15.83C16.47 6.65002 16.99 7.17002 16.99 7.81002V9.09002C16.99 9.56002 16.7 10.14 16.41 10.43L13.91 12.64C13.56 12.93 13.33 13.51 13.33 13.98V16.48C13.33 16.83 13.1 17.29 12.81 17.47L12 17.98C11.24 18.45 10.2 17.92 10.2 16.99V13.91C10.2 13.5 9.97 12.98 9.73 12.69L7.52 10.36C7.23 10.08 7 9.55002 7 9.20002V7.87002C7 7.17002 7.52 6.65002 8.16 6.65002Z"
-                                stroke="#d6d6e6" stroke-width="1" stroke-miterlimit="10" stroke-linecap="round"
-                                stroke-linejoin="round"></path>
-                        </svg>
-                    </div>
-                    <div id="search-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2"
-                            stroke-linejoin="round" stroke-linecap="round" height="24" fill="none"
-                            class="feather feather-search">
-                            <circle stroke="url(#search)" r="8" cy="11" cx="11"></circle>
-                            <line stroke="url(#searchl)" y2="16.65" y1="22" x2="16.65" x1="22"></line>
-                            <defs>
-                                <linearGradient gradientTransform="rotate(50)" id="search">
-                                    <stop stop-color="#f8e7f8" offset="0%"></stop>
-                                    <stop stop-color="#b6a9b7" offset="50%"></stop>
-                                </linearGradient>
-                                <linearGradient id="searchl">
-                                    <stop stop-color="#b6a9b7" offset="0%"></stop>
-                                    <stop stop-color="#837484" offset="50%"></stop>
-                                </linearGradient>
-                            </defs>
-                        </svg>
+                    <div id="main">
+                        <input type="text" name="text" class="input" v-model="searchQuery" @input="debounceSearch"
+                            placeholder="Search products..." />
+                        <div class="filterBorder"></div>
+                        <div id="filter-icon">
+                            <svg preserveAspectRatio="none" height="27" width="27" viewBox="4.8 4.56 14.832 15.408"
+                                fill="none">
+                                <path
+                                    d="M8.16 6.65002H15.83C16.47 6.65002 16.99 7.17002 16.99 7.81002V9.09002C16.99 9.56002 16.7 10.14 16.41 10.43L13.91 12.64C13.56 12.93 13.33 13.51 13.33 13.98V16.48C13.33 16.83 13.1 17.29 12.81 17.47L12 17.98C11.24 18.45 10.2 17.92 10.2 16.99V13.91C10.2 13.5 9.97 12.98 9.73 12.69L7.52 10.36C7.23 10.08 7 9.55002 7 9.20002V7.87002C7 7.17002 7.52 6.65002 8.16 6.65002Z"
+                                    stroke="#d6d6e6" stroke-width="1" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round"></path>
+                            </svg>
+                        </div>
+                        <div id="search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2"
+                                stroke-linejoin="round" stroke-linecap="round" height="24" fill="none"
+                                class="feather feather-search">
+                                <circle stroke="url(#search)" r="8" cy="11" cx="11"></circle>
+                                <line stroke="url(#search)" y2="16.65" y1="22" x2="16.65" x1="22"></line>
+                                <defs>
+                                    <linearGradient gradientTransform="rotate(50)" id="search">
+                                        <stop stop-color="#f8e7f8" offset="0%"></stop>
+                                        <stop stop-color="#b6a9b7" offset="50%"></stop>
+                                    </linearGradient>
+                                    <linearGradient id="searchç">
+                                        <stop stop-color="#b6a9b7" offset="0%"></stop>
+                                        <stop stop-color="#837484" offset="50%"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- <input
-          v-model="searchQuery"
-          @input="debounceSearch"
-          placeholder="Search products..."
-          class="w-full p-2 border rounded"
-        /> -->
         </div>
         <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
             <div v-for="product in productList" :key="product.id">
@@ -79,6 +73,9 @@ const pageSize = 25;
 const searchQuery = ref('');
 const loading = ref(false);
 const observer = ref(null);
+
+const stickySearchContainer = ref(null);
+let lastScrollTop = 0;
 
 const fetchProducts = async () => {
     loading.value = true;
@@ -118,16 +115,31 @@ onMounted(() => {
         }
     }, { threshold: 1.0 });
 
+    stickySearchContainer.value = document.querySelector('.sticky-search-container');
+    window.addEventListener('scroll', handleScroll);
+
+
     if (infiniteScrollTrigger.value) {
         observer.value.observe(infiniteScrollTrigger.value);
     }
 });
 
 onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
     if (observer.value) {
         observer.value.disconnect();
     }
 });
+
+function handleScroll() {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+        stickySearchContainer.value.style.opacity = '0';
+    } else {
+        stickySearchContainer.value.style.opacity = '1';
+    }
+    lastScrollTop = st <= 0 ? 0 : st;
+}
 </script>
 
 <style scoped>
@@ -160,22 +172,21 @@ li {
     filter: blur(3px);
 }
 
+#poda {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .input {
     background-color: #010201;
     border: none;
-    /* padding:7px; */
-    width: 301px;
     height: 56px;
     border-radius: 10px;
     color: white;
     padding-inline: 59px;
     font-size: 18px;
-}
-
-#poda {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 301px;
 }
 
 .input::placeholder {
@@ -238,10 +249,10 @@ li {
     background-position: 0 0;
     filter: brightness(1.4);
     background-image: conic-gradient(rgba(0, 0, 0, 0) 0%,
-            #a099d8,
+            #83e6e6,
             rgba(0, 0, 0, 0) 8%,
             rgba(0, 0, 0, 0) 50%,
-            #dfa2da,
+            #184177,
             rgba(0, 0, 0, 0) 58%);
 
     transition: all 2s;
@@ -268,10 +279,10 @@ li {
     background-repeat: no-repeat;
     background-position: 0 0;
     background-image: conic-gradient(#1c191c,
-            #402fb5 5%,
+            #008080 5%,
             #1c191c 14%,
             #1c191c 50%,
-            #cf30aa 60%,
+            #154f9b 60%,
             #1c191c 64%);
     transition: all 2s;
 }
@@ -294,10 +305,10 @@ li {
     background-repeat: no-repeat;
     background-position: 0 0;
     background-image: conic-gradient(rgba(0, 0, 0, 0),
-            #18116a,
+            #008080,
             rgba(0, 0, 0, 0) 10%,
             rgba(0, 0, 0, 0) 50%,
-            #6e1b60,
+            #145fc1,
             rgba(0, 0, 0, 0) 60%);
     transition: all 2s;
 }
@@ -376,10 +387,10 @@ li {
     background-position: 0 0;
     /*border color, change middle color*/
     background-image: conic-gradient(#000,
-            #402fb5 5%,
+            #008080 5%,
             #000 38%,
             #000 50%,
-            #cf30aa 60%,
+            #1f477b 60%,
             #000 87%);
     transition: all 2s;
 }
@@ -472,6 +483,8 @@ li {
 #search-icon {
     position: absolute;
     left: 20px;
-    top: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
 }
 </style>
