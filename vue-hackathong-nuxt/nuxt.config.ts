@@ -12,10 +12,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-
-  plugins: [
-    '~/plugins/services'
-  ],
+  
   css: ['~/assets/main.css','~/assets/base.css'],
   modules: [
     '@nuxtjs/tailwindcss'

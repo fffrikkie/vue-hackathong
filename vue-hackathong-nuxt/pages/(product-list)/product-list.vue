@@ -7,13 +7,13 @@
             </div>
         </div>
     </div>
+    <h1>{{ t }}</h1>
 </template>
 
 <script setup>
 import ProductListItem from '@/components/product-list-item.vue';
-// import ProductListService from '@/services/ProductService.vue';
-
-// const MockProducts = getProductList();
+const { $ProductService } = useNuxtApp()
+const productList = await useAsyncData('modules', () => $ProductService('/modules'))
 
 const products = [
     { id: 1, name: 'Product 1', price: 49, imageUrl: 'https://media.takealot.com/covers_images/7ee4f95677f14d23bd52b29a2d3bc387/s-pdpxl.file' },
