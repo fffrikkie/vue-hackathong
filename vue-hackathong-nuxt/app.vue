@@ -4,27 +4,61 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <header class="flex w-screen bg-gray-800 p-2">
+    <div class="logo-wrapper">
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="75" height="75" />
+      <p>Nuxt to nothing prices</p>
+    </div>
 
-    <div class="wrapper">
-      <nav>
-        <NuxtLink to="/">Product List</NuxtLink>
-        <NuxtLink to="/about">About</NuxtLink>
-        <NuxtLink to="/itemview">Item View</NuxtLink>
+    <div class="wrapper flex-grow">
+      <nav class="flex justify-between content-center">
+        <div>
+          <NuxtLink to="/">Home</NuxtLink>
+          <NuxtLink to="/about">About</NuxtLink>
+        </div>
+        <h1> Temp CART</h1>
       </nav>
     </div>
-  </header> -->
-  <NuxtPage />
+  </header>
+  <div class="body">
+    <NuxtPage />
+  </div>
 </template>
 
 <style scoped>
 header {
+  top: 0;
+  display: absolute;
+  position: fixed;
   line-height: 1.5;
   max-height: 100vh;
 }
 
+.navbar {
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+}
+
+.wrapper { 
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.body {
+  margin-top: 8rem;
+}
+
 .logo {
+  text-align: center;
   display: block;
   margin: 0 auto 2rem;
 }
@@ -33,7 +67,6 @@ nav {
   width: 100%;
   font-size: 12px;
   text-align: center;
-  margin-top: 2rem;
 }
 
 nav a.router-link-exact-active {
@@ -73,11 +106,9 @@ nav a:first-of-type {
 
   nav {
     text-align: left;
-    margin-left: -1rem;
     font-size: 1rem;
 
     padding: 1rem 0;
-    margin-top: 1rem;
   }
 }
 </style>
