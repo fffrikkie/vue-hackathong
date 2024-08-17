@@ -1,4 +1,5 @@
 <template>
+    <NuxtLoadingIndicator :is="$loading" />
     <div >
         <div class="text-5xl p-8">Product List</div>
         <div class="grid gap-8 md:grid-cols-1 lg:grid-cols-4 p-8">
@@ -11,16 +12,16 @@
 
 <script setup>
 import ProductListItem from '@/components/product-list-item.vue';
-const { $ProductService } = useNuxtApp()
-const productList = await useAsyncData(() => $ProductService('/list', 
+const { $ProductService, $loading } = useNuxtApp()
+
+const productList = await $ProductService.getAllProducts(
 {
-    method: 'POST', 
-    body: {
-        page: 0,
-        pageSize: 25,
-        tags: [],
-        search: ''
-}})).data._rawValue;
+    page: 0,
+    pageSize: 25,
+    tags: [],
+    search: ''
+});
+
 </script>
 
 <style scoped>
